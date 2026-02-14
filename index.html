@@ -526,14 +526,78 @@
                 flex-direction: column;
             }
         }
+
+        /* Music Start Overlay */
+        .music-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .music-overlay.hidden {
+            display: none;
+        }
+
+        .music-start-button {
+            background: linear-gradient(135deg, var(--dark-pink), var(--red));
+            color: white;
+            border: none;
+            padding: 30px 60px;
+            font-size: 1.5rem;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 40px rgba(255, 105, 180, 0.6);
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        .music-start-button:active {
+            transform: scale(0.95);
+        }
+
+        .music-overlay-text {
+            color: white;
+            font-size: 1.8rem;
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            padding: 0 20px;
+        }
+
+        .music-overlay-emoji {
+            font-size: 4rem;
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
     </style>
 </head>
 <body>
+    <!-- Music Start Overlay -->
+    <div class="music-overlay" id="musicOverlay">
+        <div class="music-overlay-emoji">🎵</div>
+        <div class="music-overlay-text">Tap to start with music 💖</div>
+        <button class="music-start-button" id="startMusicBtn">Start 🎶</button>
+    </div>
+
     <!-- Floating Hearts -->
     <div class="hearts-container" id="heartsContainer"></div>
 
     <!-- Background Music (Auto-play) -->
-    <audio id="bgMusic" autoplay loop>
+    <audio id="bgMusic" loop>
         <source src="bg.mp3" type="audio/mpeg">
     </audio>
 
@@ -658,7 +722,7 @@
 
             <div class="reason-card">
                 <div class="reason-front">
-                    <span class="reason-number">Lingin og Face</span>
+                    <span class="reason-number">Lingin of Face</span>
                 </div>
                 <div class="reason-back">
                     <p class="reason-text">The way you support my dreams and ambitions</p>
@@ -780,23 +844,30 @@
     </div>
 
     <script>
-        // Auto-play background music on user interaction
+        // Music Start - Mobile Friendly
         document.addEventListener('DOMContentLoaded', function() {
             const bgMusic = document.getElementById('bgMusic');
+            const musicOverlay = document.getElementById('musicOverlay');
+            const startMusicBtn = document.getElementById('startMusicBtn');
             
-            // Try to play immediately
-            bgMusic.play().catch(() => {
-                // If autoplay is blocked, play on first user interaction
-                const playOnInteraction = () => {
+            // Start music when button is clicked
+            startMusicBtn.addEventListener('click', function() {
+                bgMusic.play().then(() => {
+                    // Successfully started playing
+                    musicOverlay.classList.add('hidden');
+                }).catch(error => {
+                    console.log('Playback error:', error);
+                    // Try again
                     bgMusic.play();
-                    document.removeEventListener('click', playOnInteraction);
-                    document.removeEventListener('touchstart', playOnInteraction);
-                    document.removeEventListener('scroll', playOnInteraction);
-                };
-                
-                document.addEventListener('click', playOnInteraction);
-                document.addEventListener('touchstart', playOnInteraction);
-                document.addEventListener('scroll', playOnInteraction);
+                    musicOverlay.classList.add('hidden');
+                });
+            });
+
+            // Also allow tap anywhere on overlay to start
+            musicOverlay.addEventListener('click', function(e) {
+                if (e.target === musicOverlay) {
+                    startMusicBtn.click();
+                }
             });
         });
 
