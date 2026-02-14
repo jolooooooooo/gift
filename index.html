@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To The Love of My Life ❤️</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Quicksand:wght@300;400;600&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --pink: #FFB6C1;
+            --dark-pink: #FF69B4;
+            --red: #FF6B6B;
+            --cream: #FFF5EE;
+            --light-cream: #FFFAF0;
+            --gold: #FFD700;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, var(--light-cream) 0%, var(--cream) 50%, #FFE4E1 100%);
+            color: #5a5a5a;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Floating Hearts Animation */
+        .hearts-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            color: var(--pink);
+            opacity: 0;
+            animation: float-up 8s infinite ease-in-out;
+        }
+
+        @keyframes float-up {
+            0% {
+                opacity: 0;
+                transform: translateY(100vh) rotate(0deg);
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100px) rotate(360deg);
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            color: var(--red);
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            color: #666;
+            margin-bottom: 50px;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .heart-button {
+            background: linear-gradient(135deg, var(--dark-pink), var(--red));
+            color: white;
+            border: none;
+            padding: 20px 50px;
+            font-size: 1.3rem;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.4);
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite, fadeInUp 1s ease 0.6s both;
+        }
+
+        .heart-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 105, 180, 0.6);
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        /* Section Styling */
+        section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--red);
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        /* Our Story Section */
+        .story-intro {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            margin-bottom: 60px;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--pink), var(--red));
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            width: calc(50% - 40px);
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: scale(1.05);
+        }
+
+        .timeline-content h3 {
+            color: var(--dark-pink);
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: var(--red);
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 0 0 4px var(--pink);
+        }
+
+        /* Reasons Section */
+        .reasons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .reason-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: all 0.5s ease;
+            transform-style: preserve-3d;
+            position: relative;
+            min-height: 200px;
+        }
+
+        .reason-card:hover {
+            transform: rotateY(180deg);
+        }
+
+        .reason-front, .reason-back {
+            backface-visibility: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            border-radius: 15px;
+        }
+
+        .reason-front {
+            background: linear-gradient(135deg, var(--pink), var(--light-cream));
+        }
+
+        .reason-back {
+            background: linear-gradient(135deg, var(--red), var(--dark-pink));
+            color: white;
+            transform: rotateY(180deg);
+        }
+
+        .reason-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--red);
+        }
+
+        .reason-text {
+            font-size: 1.1rem;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        /* Photo Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            aspect-ratio: 1;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(255, 105, 180, 0.4);
+        }
+
+        .gallery-item video,
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover video,
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Love Letter Section */
+        .love-letter {
+            background: white;
+            padding: 60px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+            line-height: 2;
+            color: #555;
+            position: relative;
+            margin-top: 50px;
+        }
+
+        .love-letter::before {
+            content: '💌';
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 3rem;
+        }
+
+        .typed-text {
+            min-height: 300px;
+        }
+
+        /* Final Surprise Section */
+        .surprise-section {
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .surprise-button {
+            background: linear-gradient(135deg, var(--gold), #FFA500);
+            color: white;
+            border: none;
+            padding: 25px 60px;
+            font-size: 1.5rem;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        .surprise-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.6);
+        }
+
+        /* Modal/Popup */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: white;
+            padding: 60px;
+            border-radius: 30px;
+            text-align: center;
+            max-width: 700px;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: scaleIn 0.5s ease;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 2rem;
+            color: #999;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            background: none;
+            border: none;
+            line-height: 1;
+        }
+
+        .close-modal:hover {
+            color: var(--red);
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0.7);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .modal-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--red);
+            margin-bottom: 30px;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .modal-button {
+            background: linear-gradient(135deg, var(--dark-pink), var(--red));
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .modal-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 105, 180, 0.4);
+        }
+
+        /* Confetti */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: var(--pink);
+            position: absolute;
+            animation: confetti-fall 3s linear forwards;
+        }
+
+        @keyframes confetti-fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                flex-direction: column !important;
+                padding-left: 50px;
+            }
+
+            .timeline-content {
+                width: 100%;
+            }
+
+            .timeline-dot {
+                left: 20px;
+            }
+
+            .love-letter {
+                padding: 30px 20px;
+                font-size: 1.2rem;
+            }
+
+            .modal-content {
+                padding: 40px 20px;
+                margin: 20px;
+            }
+
+            .modal-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Hearts -->
+    <div class="hearts-container" id="heartsContainer"></div>
+
+    <!-- Background Music (Auto-play) -->
+    <audio id="bgMusic" autoplay loop>
+        <source src="bg.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <h1>BAHALAG SAGING BASTA LABING</h1>
+        <p>UNSA KA UNGGOY?.</p>
+        <button class="heart-button" onclick="scrollToStory()">E OPEN ANG UNGGOY</button>
+    </section>
+
+    <!-- Our Story Section -->
+    <section id="story">
+        <h2>Ari ga sugod nako nailhan ang unggoy</h2>
+        <div class="story-intro">
+            <p>
+                Gadula ko'g MLBB ato nga adlaw, unya nakakita ko nga naay ning chat sa world chat nga lf daw ka duo HAHAHAHAHA. Mao to ako siya gi follow, dayon ning chat ko niya nga "Duwa ka?" HAHAHAHAH. Pero kyutt man siya nga pagka unggoy(ang name diay sa unggoy kay Almarie HAHAHAHA). Nakaingon ko sa akong kaugalingon, "Kinsa kaha ni nga kyutt nga unggoy?" Mao na ang unang higayon nga nakaila ko nimo. Dili ko magdahom nga ang kyutt nga unggoy mao diay ang hinungdan nga ma-inlove pud ang isa ka unggoy (btw unggoy pud diay ko hehe).
+            </p>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Duwa with Unggoy</h3>
+                    <p>Sigi ramig duwa sa unggoy ato nga time </p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Friend na sa FB ang mga unggoy</h3>
+                    <p>Nag ask ko ato iyang fb.</p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Ga chat chat ang mga unggoy</h3>
+                    <p>Ma to ga chat chat na ang mga unggoy. </p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reasons I Love You -->
+    <section id="reasons">
+        <h2> REASONS NGANONG GANAHAN KO ANING UNGGOY</h2>
+        <div class="reasons-grid">
+            <div class="reason-card">
+                <div class="reason-front">
+                    <span class="reason-number">Super Kyutt</span>
+                </div>
+                <div class="reason-back">
+                    <p class="reason-text">Your smile lights up my entire world</p>
+                </div>
+            </div>
+
+            <div class="reason-card">
+                <div class="reason-front">
+                    <span class="reason-number">Murag Anghel</span>
+                </div>
+                <div class="reason-back">
+                    <p class="reason-text">The way you make me laugh even on my darkest days</p>
+                </div>
+            </div>
+
+            <div class="reason-card">
+                <div class="reason-front">
+                    <span class="reason-number">Gamatoy</span>
+                </div>
+                <div class="reason-back">
+                    <p class="reason-text">Your kindness and compassion for everyone around you</p>
+                </div>
+            </div>
+
+            <div class="reason-card">
+                <div class="reason-front">
+                    <span class="reason-number">Shempre Pretty</span>
+                </div>
+                <div class="reason-back">
+                    <p class="reason-text">How you understand me without words</p>
+                </div>
+            </div>
+
+            <div class="reason-card">
+                <div class="reason-front">
+                    <span class="reason-number">Very Buotan</span>
+                </div>
+                <div class="reason-back">
+                    <p class="reason-text">Your strength and determination inspire me daily</p>
+                </div>
+            </div>
+
+            <div class="reason-card">
+                <div class="reason-front">
+                    <span class="reason-number">Lab niyas J daw</span>
+                </div>
+                <div class="reason-back">
+                    <p class="reason-text">The little things you do that show you care</p>
+                </div>
+            </div>
+
+            <div class="reason-card">
+                <div class="reason-front">
+                    <span class="reason-number">Masud og sako</span>
+                </div>
+                <div class="reason-back">
+                    <p class="reason-text">How safe and loved I feel in your arms</p>
+                </div>
+            </div>
+
+            <div class="reason-card">
+                <div class="reason-front">
+                    <span class="reason-number">Chubby Patotiee</span>
+                </div>
+                <div class="reason-back">
+                    <p class="reason-text">Your beautiful soul that shines from within</p>
+                </div>
+            </div>
+
+            <div class="reason-card">
+                <div class="reason-front">
+                    <span class="reason-number">Lingin of Face</span>
+                </div>
+                <div class="reason-back">
+                    <p class="reason-text">The way you support my dreams and ambitions</p>
+                </div>
+            </div>
+
+            <div class="reason-card">
+                <div class="reason-front">
+                    <span class="reason-number">Fav Person nako</span>
+                </div>
+                <div class="reason-back">
+                    <p class="reason-text">Simply because you are YOU, and you're perfect for me</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video & Photo Gallery -->
+    <section id="gallery">
+        <h2>Dagway sa Unggoy</h2>
+        <div class="gallery">
+            <div class="gallery-item video-item">
+                <video autoplay loop muted playsinline>
+                    <source src="al12.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="gallery-item image-item">
+                <img src="al1.jpg" alt="Memory 1">
+            </div>
+            <div class="gallery-item video-item">
+                <video autoplay loop muted playsinline>
+                    <source src="al13.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="gallery-item image-item">
+                <img src="al2.jpg" alt="Memory 2">
+            </div>
+            <div class="gallery-item video-item">
+                <video autoplay loop muted playsinline>
+                    <source src="al14.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="gallery-item image-item">
+                <img src="al3.jpg" alt="Memory 3">
+            </div>
+            <div class="gallery-item video-item">
+                <video autoplay loop muted playsinline>
+                    <source src="al15.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="gallery-item image-item">
+                <img src="al4.jpg" alt="Memory 4">
+            </div>
+            <div class="gallery-item video-item">
+                <video autoplay loop muted playsinline>
+                    <source src="al16.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="gallery-item image-item">
+                <img src="al5.jpg" alt="Memory 5">
+            </div>
+            <div class="gallery-item video-item">
+                <video autoplay loop muted playsinline>
+                    <source src="al17.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="gallery-item image-item">
+                <img src="al6.jpg" alt="Memory 6">
+            </div>
+            <div class="gallery-item image-item">
+                <img src="al7.jpg" alt="Memory 7">
+            </div>
+            <div class="gallery-item video-item">
+                <video autoplay loop muted playsinline>
+                    <source src="al18.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="gallery-item image-item">
+                <img src="al8.jpg" alt="Memory 8">
+            </div>
+            <div class="gallery-item image-item">
+                <img src="al9.jpg" alt="Memory 9">
+            </div>
+            <div class="gallery-item image-item">
+                <img src="al10.jpg" alt="Memory 10">
+            </div>
+            <div class="gallery-item image-item">
+                <img src="al11.jpg" alt="Memory 11">
+            </div>
+            <div class="gallery-item image-item">
+                <img src="al19.jpg" alt="Memory 12">
+            </div>
+        </div>
+    </section>
+
+    <!-- Final Surprise -->
+    <section class="surprise-section">
+        <button class="surprise-button" onclick="showSurprise()">Naa koy Chocolate para nimo lang</button>
+    </section>
+
+    <!-- Modal -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal()">&times;</button>
+            <div id="videoContainer" style="display: none; margin-bottom: 30px;">
+                <video id="surpriseVideo" controls style="width: 100%; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+                    <source src="choco.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Auto-play background music on user interaction
+        document.addEventListener('DOMContentLoaded', function() {
+            const bgMusic = document.getElementById('bgMusic');
+            
+            // Try to play immediately
+            bgMusic.play().catch(() => {
+                // If autoplay is blocked, play on first user interaction
+                const playOnInteraction = () => {
+                    bgMusic.play();
+                    document.removeEventListener('click', playOnInteraction);
+                    document.removeEventListener('touchstart', playOnInteraction);
+                    document.removeEventListener('scroll', playOnInteraction);
+                };
+                
+                document.addEventListener('click', playOnInteraction);
+                document.addEventListener('touchstart', playOnInteraction);
+                document.addEventListener('scroll', playOnInteraction);
+            });
+        });
+
+        // Floating Hearts
+        function createHeart() {
+            const heartsContainer = document.getElementById('heartsContainer');
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDelay = Math.random() * 5 + 's';
+            heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+            heartsContainer.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 8000);
+        }
+
+        setInterval(createHeart, 800);
+
+        // Smooth Scroll
+        function scrollToStory() {
+            document.getElementById('story').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Modal Functions
+        function showSurprise() {
+            const modal = document.getElementById('modal');
+            const videoContainer = document.getElementById('videoContainer');
+            const video = document.getElementById('surpriseVideo');
+            
+            modal.classList.add('active');
+            videoContainer.style.display = 'block';
+            
+            // Auto-play the video
+            video.play().catch(error => {
+                console.log('Auto-play prevented:', error);
+            });
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            const video = document.getElementById('surpriseVideo');
+            
+            modal.classList.remove('active');
+            video.pause();
+            video.currentTime = 0;
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Scroll animations
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.timeline-item, .reason-card, .gallery-item');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementBottom = element.getBoundingClientRect().bottom;
+                
+                if (elementTop < window.innerHeight && elementBottom > 0) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+
+        // Initial setup for scroll animations
+        document.querySelectorAll('.timeline-item, .reason-card, .gallery-item').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(30px)';
+            element.style.transition = 'all 0.6s ease';
+        });
+
+        window.addEventListener('scroll', animateOnScroll);
+        animateOnScroll(); // Run once on load
+    </script>
+</body>
+</html>
